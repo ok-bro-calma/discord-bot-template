@@ -1,5 +1,5 @@
 module.exports = {
-  // a menu is generally in expectation everytime
+  // having a menu is the first priority when you're working with loads of data and require pagination
   menu: class {
     constructor(...pages) { // takes a single or multiple array of pages having your content
       pages = pages.filter(Array.isArray);
