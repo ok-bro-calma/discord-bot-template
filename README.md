@@ -84,7 +84,7 @@ if (!['number', 'string'].includes(typeof s)) {
 
 # Replit
 * If you're using replit, don't decide to host it permanently there, its a repl not a vps
-* Its fine to use it for testing, you shall check out the <a href="https://search.nixos.org/packages">nix store</a> for adding necessary packages to your environment
+* Its fine to use it for testing, you shall check out the <a href="https://search.nixos.org/packages">nix store</a> for adding necessary packages to your environment<br>
 This is the current configuration
 ```nix
 { pkgs }: {
