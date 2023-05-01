@@ -1,5 +1,4 @@
 module.exports = {
-  // having a menu is the first priority when you're working with loads of data and require pagination
   menu: class {
     constructor(...pages) { // takes a single or multiple array of pages having your content
       pages = pages.filter(Array.isArray);
@@ -49,7 +48,8 @@ module.exports = {
     }
   },
   
-  // calculating time is the second most priority
+  // string (delimiter ':') => number (seconds)
+  // number (seconds) => string (delimiter ':')
   time: (s, t) => {
     // return the current time if not no types match
     if (!['number', 'string'].includes(typeof s)) {
@@ -72,7 +72,6 @@ module.exports = {
         30 * 24 * 60 * 60,
         12 * 30 * 24 * 60 * 60
       ];
-      // returns the number of seconds!
       return s.reduce((t, c) => t + c * map[i], 0);
     };
     
@@ -89,11 +88,10 @@ module.exports = {
     ];
     let length = t?.split(':')?.length || 1;
     while (!s[0] && s.length > length) s.shift();
-    // returns a string!
     return s.map(t => t < 10 ? `0${t}` : `${t}`).join(':');
   },
   
-  // formats blocks of code to readable string! third most priority.
+  // formats block of code to readable string! 
   clean: async (text) => {
     if (text && text.constructor.name == "Promise") text = await text;
     if (typeof text !== "string") text = require("util").inspect(text, { depth: 1 });
