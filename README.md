@@ -15,7 +15,7 @@ module.exports = ({ model, Schema }) => model('guild', Schema({
 ```
 
 
-# Command File Examples
+# Commands
 ## Text 
 ```js
 module.exports = {
