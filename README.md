@@ -84,17 +84,17 @@ if (!['number', 'string'].includes(typeof s)) {
 
 # Replit
 * If you're using replit, don't decide to host it permanently there, its a repl not a vps
-* Its fine to use it for testing, you shall check our the <a href="https://search.nixos.org/packages">nix store</a> for adding necessary packages to your environment
+* Its fine to use it for testing, you shall check out the <a href="https://search.nixos.org/packages">nix store</a> for adding necessary packages to your environment
 This is the current configuration
 ```nix
 { pkgs }: {
-	deps = [
-		pkgs.nodejs-19_x
+  deps = [
+    pkgs.nodejs-19_x
     pkgs.nodePackages.typescript-language-server
     pkgs.yarn
     pkgs.replitPackages.jest
     pkgs.python311
     pkgs.ffmpeg_5-full
-	];
+  ];
 }
 ```
