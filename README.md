@@ -73,7 +73,7 @@ module.exports = {
 * All errors are logged, eventually you might want to use colors too
 * You might also want to customize the time, which is by default set to IST
 ```js
-// util/helper.js
+// util/helper.js:55:5
 if (!['number', 'string'].includes(typeof s)) {
   const d = new Date(Date.now() + 330 * 60_000); // 330 is your timezone offset to utc in minutes
   const time = [d.getHours(), d.getMinutes(), d.getSeconds()];
