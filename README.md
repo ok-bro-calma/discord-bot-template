@@ -17,11 +17,11 @@ module.exports = ({ model, Schema }) => model('guild', Schema({
 Accessing a Model:
 ```js
 // create a new document
-let guild = new client.db.model('model_name');
-// set values guild.prop = value or directly like this
+let guild = new client.db.model('model_name')();
+// set values: guild.prop = value; or directly like this:
 guild = new client.db.model('model_name')({
-  key: value,
-  name: something,
+  key: 'value',
+  name: 'something',
   id: 1234567890
 });
 // finally, save it
