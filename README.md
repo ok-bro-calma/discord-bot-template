@@ -1,13 +1,11 @@
-# discord-bot-template
-A simple discord bot template based on Discord.js v14.9.0
-
+<div id="header" align="center"><h2>Discord Bot Template</h2><br><p>A simple discord bot template based on Discord.js v14.9.0</p><br><img width="50%" align="center" src="https://user-images.githubusercontent.com/132000890/235563859-67cda7a7-5509-40cc-970b-dd21ff467ae4.png"/></div>
 
 # Database
-This bot uses the mongoose package for handling MongoDB queries<br>
+This bot uses the mongoose npm package for handling MongoDB queries<br>
 
 Sample Model File:
 ```js
-// destructure required props from the mongoose package
+// destructure required props from the package
 module.exports = ({ model, Schema }) => model('guild', Schema({
   id: String,
   prefix: { type: String, default: prefix }
@@ -27,7 +25,7 @@ guild = new client.db.model('model_name')({
 // finally, save it
 await guild.save();
 ```
-
+<br>
 
 # Commands
 ## Text 
@@ -63,7 +61,7 @@ module.exports = {
 ## Slash
 ```js
 module.exports = {
-  // extract required props from discord package
+  // extract required props from package (discord)
   data: ({ SlashCommandBuilder /*, ChannelType, etc */ }) => new SlashCommandBuilder()
   .setName('command name')
   .setDescription('command description'),
@@ -81,7 +79,7 @@ module.exports = {
   }
 };
 ```
-
+<br>
 
 # Logging
 * All errors are logged, eventually you might want to use colors too
@@ -94,7 +92,7 @@ if (!['number', 'string'].includes(typeof s)) {
   return time.map(t => t < 10 ? `0${t}` : `${t}`).join(':');
 };
 ```
-
+<br>
 
 # Replit
 * If you're using replit, don't decide to host it permanently there, its a repl not a vps
