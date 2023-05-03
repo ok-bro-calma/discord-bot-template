@@ -5,19 +5,14 @@ module.exports = {
   description: '[dev only util] Runs a script',
   
   run: async (client, message, args) => {
-    if (!client.config.owners.includes(message.author.id)) return; // owners/team members only
-    
-    // formatting
+    if (!client.config.owners.includes(message.author.id)) return;
     args = args.join(' ');
     if (args.startsWith('```')) {
       args = args.split(`\n`);
       args.shift();
+      if (args[args.length - 1] === '```') args.pop();
       args = args.join(`\n`);
-      if (args.endsWith('```')) args = args.slice(0, -3);
     };
-    
-    // run and send errors (if any)
-    // don't worry, detailed error is not sent, you can customize and change it though
     try {
       args = eval(args);
       args = await client.util.clean(args);
@@ -32,7 +27,7 @@ module.exports = {
     catch(e) {
       try {
         await message.reply({
-          content: `\`\`\`\n${e.toString()}\`\`\``
+          content: `\`\`\`\n${e}\`\`\``
         });
       }
       catch {};
