@@ -57,12 +57,13 @@ module.exports = async (client, message) => {
     // extracting the command
     let command = content
       .split(`\n`)[0]
-      .split(/ +/g)[0]
-      .trim();
+      .trim()
+      .split(/ +/g)[0];
     
     // extracting args (as per command length)
     let args = content
-      .slice(command.length, content.length)
+      .slice(command.length)
+      .trim()
       .split(/ +/g)
       .filter(Boolean);
     
@@ -96,5 +97,4 @@ module.exports = async (client, message) => {
       console.log(e);
     };
   })();
-  
 };
