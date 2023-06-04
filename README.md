@@ -106,7 +106,7 @@ if (!['number', 'string'].includes(typeof s)) {
     pkgs.yarn
     pkgs.replitPackages.jest
     pkgs.python311
-    pkgs.ffmpeg_5-full
+    pkgs.ffmpeg
   ];
 }
 ```
