@@ -27,7 +27,7 @@ await guild.save();
 ```
 <br>
 
-# Commands
+# Command Files
 ## Text 
 ```js
 module.exports = {
