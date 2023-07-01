@@ -24,10 +24,10 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ok-bro-calma/discord-bot-template.git"
+    "url": "git+https://github.com/stable-aman/discord-bot-template.git"
   },
   "bugs": {
-    "url": "https://github.com/ok-bro-calma/discord-bot-template/issues"
+    "url": "https://github.com/stable-aman/discord-bot-template/issues"
   },
-  "homepage": "https://github.com/ok-bro-calma/discord-bot-template#readme"
+  "homepage": "https://github.com/stable-aman/discord-bot-template#readme"
 }
