@@ -55,6 +55,6 @@ module.exports = (client) => {
   });
 
   // login! kill the process on failure
-  client.login(process.env.token)
+  client.login(client.config.token)
   .catch(() => process.kill(process.pid));
 }
