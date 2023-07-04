@@ -7,7 +7,7 @@ module.exports = async (client, message) => {
     // a reply (preferably bot intro) if the message content only had the bot's mention
     if (message.content.trim() === mention) {
       try {
-        // customize this message, don't forget you still have client.discord
+        // customize this message, don't forget you still have client.discord in case you're looking for the discord package
         await message.reply({
           content: 'Hi'
         });
