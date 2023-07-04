@@ -1,4 +1,4 @@
-<div id="header" align="center"><h2>Discord Bot Template</h2><br><p>A simple discord bot template based on Discord.js v14.9.0</p><br><img width="50%" align="center" src="https://user-images.githubusercontent.com/132000890/235563859-67cda7a7-5509-40cc-970b-dd21ff467ae4.png"/></div>
+<div id="header" align="center"><h2>Discord Bot Template</h2><br><p>A simple discord bot template based on Discord.js v14.11.0</p><br><img width="50%" align="center" src="https://user-images.githubusercontent.com/132000890/235563859-67cda7a7-5509-40cc-970b-dd21ff467ae4.png"/></div>
 
 # Database
 This bot uses the mongoose npm package for handling MongoDB queries<br>
