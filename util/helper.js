@@ -58,7 +58,7 @@ module.exports = {
       return time.map(t => t < 10 ? `0${t}` : `${t}`).join(':');
     };
     
-    // from hereon you may customize the input and output params by yourself
+    // from hereon you may customize the input and output values by yourself
     // if its a string
     if (isNaN(s)) {
       s = s.split(':').map(Number).filter(n => typeof n === 'number').reverse();
