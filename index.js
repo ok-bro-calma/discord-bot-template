@@ -47,45 +47,42 @@ for (const interaction of client.container) client.interactions.set(
   require(`./interactions/${interaction}`)
 );
 
-// slash commands
-client.container = client.fs.readdirSync('./commands/slash').filter(folder => !folder.includes('.'));
-for (const dir of client.container) {
-  client.files = client.fs.readdirSync(`./commands/slash/${dir}`).filter(file => file.endsWith('.js'));
-  for (let command of client.files) {
-    command = require(`./commands/slash/${dir}/${command}`);
-    command.data = command.data(Discord).toJSON();
-    command.category = dir;
-    client.commands.slash.set(command.data.name, command);
-  };
-};
+// define a function to set commands, both slash and text commands
+function setCommand(dir, command) {
+  if (command.data) command.data = command.data(Discord).toJSON()
+  else if (command.aliases?.length) for (const alias of command.aliases) client.commands.aliases.set(alias, command.name);
+  command.category = dir.includes(".") ? "Uncategorized" : dir;
+  client.commands[command.data ? "slash" : "message"].set(command.data?.name || command.name, command);
+}
 
-// text commands
-client.container = client.fs.readdirSync('./commands/message').filter(folder => !folder.includes('.'));
-for (const dir of client.container) {
-  client.files = client.fs.readdirSync(`./commands/message/${dir}`).filter(file => file.endsWith('.js'));
-  for (let command of client.files) {
-    command = require(`./commands/message/${dir}/${command}`);
-    if (command.aliases?.length) {
-      for (const alias of command.aliases) {
-        client.commands.aliases.set(alias, command.name);
-      };
-    };
-    command.category = dir;
-    client.commands.message.set(command.name, command);
-  };
-};
+// set commands
+for (const type of ["slash", "message"]) {
+  // filter folders and javascript files only
+  const items = client.fs.readdirSync(`./commands/${type}`)
+    .filter(item => !item.includes(".") || item.endsWith(".js"));
+  for (const item of items) {
+    // if its a file
+    if (item.includes(".")) {
+      setCommand(item, require(`./commands/${type}/${item}`));
+      continue;
+    }
+    // if its a folder
+    // filter javascript files in that directory
+    const files = client.fs.readdirSync(`./commands/${type}/${item}`).filter(file => file.endsWith(".js"));
+    for (const file of files) setCommand(item, require(`./commands/${type}/${item}/${file}));
+  }
+}
 
-delete client.files;
-
-// attach listeners
+// events
 client.container = client.fs.readdirSync('./events').filter(file => file.endsWith('.js'));
 for (const event of client.container) client.on(
   event.split('.')[0],
+  // bind 'client' to the event before assignment
   require(`./events/${event}`).bind(null, client)
 );
 
 // things you want to do only ONCE, once the bot is ready
-client.once('ready', async () => {
+client.once(Discord.Events.ClientReady, async () => {
   client.application = await client.application.fetch(); // fetch partial application
   // set commands (slash commands)
   await client.application.commands.set(
@@ -106,7 +103,7 @@ client.once('ready', async () => {
   );
   else client.config.owners.push(client.application.owner.id);
   // check the client status everytime a debug event occurs, kill the process if its down
-  client.on('debug', () => {
+  client.on(Discord.Events.Debug, () => {
     if (client.isReady()) return;
     client.destroy();
     process.kill(process.pid);
